@@ -12,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@EnableJpaRepositories(basePackages = "com.example.repositories")
 @ComponentScan(basePackages = "com.example")
 public class AppConfig implements WebMvcConfigurer {
 

@@ -63,6 +63,15 @@ public class Emprendimiento {
 		this.password = password;
 	}
 	
+	public Emprendimiento(String dominio, String password, String nombre, String descripcion, double precioPorManguito, double manguitosRecibidos) {
+		this.dominio = dominio;
+		this.password = password;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precioPorManguito = precioPorManguito;
+		this.manguitosRecibidos = manguitosRecibidos;
+	}
+	
 	public String getDominio() {
 		return dominio;
 	}
