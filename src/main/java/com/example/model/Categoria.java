@@ -16,7 +16,7 @@ public class Categoria {
 	}
 
 	
-	public Categoria(String nombre) {
+	public Categoria(Long id, String nombre) {
 		this.nombre = nombre;
 	}
 	

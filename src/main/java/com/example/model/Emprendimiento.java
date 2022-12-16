@@ -63,7 +63,8 @@ public class Emprendimiento {
 		this.password = password;
 	}
 	
-	public Emprendimiento(String dominio, String password, String nombre, String descripcion, double precioPorManguito, double manguitosRecibidos) {
+	public Emprendimiento(Long id, String dominio, String password, String nombre, String descripcion, double precioPorManguito, double manguitosRecibidos) {
+		this.id = id;
 		this.dominio = dominio;
 		this.password = password;
 		this.nombre = nombre;
