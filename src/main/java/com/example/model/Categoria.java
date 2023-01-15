@@ -7,6 +7,7 @@ public class Categoria {
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
 	@Column(name="NOMBRE")
 	private String nombre;
 	
@@ -17,6 +18,7 @@ public class Categoria {
 
 	
 	public Categoria(Long id, String nombre) {
+		this.id = id;
 		this.nombre = nombre;
 	}
 	

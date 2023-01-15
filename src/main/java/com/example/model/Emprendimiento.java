@@ -2,6 +2,7 @@ package com.example.model;
 
 
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -58,9 +59,31 @@ public class Emprendimiento {
 	
 	public Emprendimiento() {
 	}
-	public Emprendimiento(String dominio, String password) {
+	public Emprendimiento(Long id, String dominio, String password) {
+		this.id = id;
 		this.dominio = dominio;
 		this.password = password;
+		this.nombre = "Sin Nombre";
+		this.descripcion = "Sin Descripcion";
+		this.precioPorManguito = 1;
+		this.manguitosRecibidos = 0;
+		this.redesSociales = new ArrayList<Url>();
+		this.posteos = new ArrayList<Posteo>();
+		this.categorias = new ArrayList<Categoria>();
+		this.planes = new ArrayList<Plan>();
+		
+	}
+	
+	public Emprendimiento(Long id, String dominio, String password, String nombre, String descripcion, double precioPorManguito, double manguitosRecibidos, List<Url> redesSociales, List<Categoria> categorias) {
+		this.id = id;
+		this.dominio = dominio;
+		this.password = password;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precioPorManguito = precioPorManguito;
+		this.manguitosRecibidos = manguitosRecibidos;
+		this.redesSociales = redesSociales;
+		this.categorias = categorias;
 	}
 	
 	public Emprendimiento(Long id, String dominio, String password, String nombre, String descripcion, double precioPorManguito, double manguitosRecibidos) {

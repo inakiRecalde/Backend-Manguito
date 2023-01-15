@@ -33,11 +33,11 @@ public class Usuario {
 		this.emprendimiento = null;
 	}
 	
-	public Usuario(String username, String password, Rol rol){
+	public Usuario(Long id, String username, String password, Rol rol){
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.rol = rol;
-		this.emprendimiento = null;
 	}
 	
 	public Long getId() {
