@@ -1,7 +1,7 @@
 package com.example.model;
 
 
-import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -27,13 +27,6 @@ public class Emprendimiento {
 	@Column(name="DESCRIPCION")
 	private String descripcion;
 	
-	/*  
-	@Column(name="BANNER")
-	private Image banner; */
-	
-	/* @Column(name="MOSTRAR_TOP")
-	private boolean mostrarTop; */
-	
 	@Column(name="PRECIO_POR_MANGUITO")
 	private double precioPorManguito;
 
@@ -58,9 +51,19 @@ public class Emprendimiento {
 	
 	public Emprendimiento() {
 	}
+	
 	public Emprendimiento(String dominio, String password) {
 		this.dominio = dominio;
 		this.password = password;
+		this.nombre = "Sin Nombre";
+		this.descripcion = "Sin Descripcion";
+		this.precioPorManguito = 1;
+		this.manguitosRecibidos = 0;
+		this.redesSociales = new ArrayList<Url>();
+		this.posteos = new ArrayList<Posteo>();
+		this.categorias = new ArrayList<Categoria>();
+		this.planes = new ArrayList<Plan>();
+		
 	}
 	
 	public String getDominio() {
