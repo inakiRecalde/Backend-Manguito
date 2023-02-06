@@ -22,6 +22,12 @@ public class Rol {
 
 	public Rol() {	}
 	
+	public Rol(Long id, String rol) {
+		super();
+		this.id = id;
+		this.rol = rol;
+	}
+
 	public Long getId() {
 		return id;
 	}

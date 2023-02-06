@@ -36,7 +36,6 @@ public class Controller {
 	private UsuarioRepository usuarioRepository;
 	
 	
-	
 	//  CONTROLERS CATEGORIA
 	
 	@CrossOrigin(origins = "http://localhost:4200")
@@ -51,11 +50,14 @@ public class Controller {
 	 public ResponseEntity<Categoria> deleteCategoria(@PathVariable("id") String id) {
 		Long idLong = Long.parseLong(id);
 		 Optional<Categoria> categoria = categoriaRepository.findById(idLong);
-		 if (categoria.isEmpty()) {
-			 return new ResponseEntity<Categoria>(HttpStatus.NOT_FOUND);
+	     if (categoria.get().getEmprendimientos().isEmpty()) {
+			 	
+				 System.out.println("categoria eliminada");
+				 categoriaRepository.delete(categoria.get());
+				 return new ResponseEntity<Categoria>(categoria.get(), HttpStatus.OK);
 		 }else {
-			 categoriaRepository.delete(categoria.get());
-			 return new ResponseEntity<Categoria>(categoria.get(), HttpStatus.OK);
+			 System.out.println("no se puede eliminar para mantener la integridad de la db");
+			 return new ResponseEntity<Categoria>(HttpStatus.NOT_FOUND);
 		 }
 		 
 	 }
@@ -109,11 +111,19 @@ public class Controller {
 	@PostMapping("/createEmprendimiento/{id}")
 	 public ResponseEntity<Emprendimiento> createEmprendimiento(@PathVariable("id") String id, @RequestBody Emprendimiento emprendimiento) {
 		Optional<Usuario> user = usuarioRepository.findById(Long.parseLong(id));
+		System.out.println("pasa user find by id");
 		user.get().setEmprendimiento(emprendimiento);
-		usuarioRepository.save(user.get());
+		System.out.println("pasa user set emprendimiento");
+		emprendimiento.setNombre("Sin nombre");
+		emprendimiento.setDescripcion("sin Descripcion");
 		emprendimientoRepository.save(emprendimiento);
+		System.out.println("pasa save emprendimiento");
+		usuarioRepository.save(user.get());
+		System.out.println("pasa save user");
 		return new ResponseEntity<Emprendimiento>(emprendimiento, HttpStatus.CREATED);
 	}
+	
+
 	
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/login")
@@ -138,6 +148,8 @@ public class Controller {
 		 currentEmprendimiento.get().setDescripcion(emprendimiento.getDescripcion());
 		 currentEmprendimiento.get().setPassword(emprendimiento.getPassword());
 		 currentEmprendimiento.get().setDescripcion(emprendimiento.getDescripcion());
+		 currentEmprendimiento.get().setPrecioPorManguito(emprendimiento.getPrecioPorManguito());
+		 currentEmprendimiento.get().setRedesSociales(emprendimiento.getRedesSociales());
 		 Optional<Usuario> user = usuarioRepository.findById(Long.parseLong(idUsuario));
 		 user.get().setEmprendimiento(currentEmprendimiento.get());
 		 usuarioRepository.save(user.get());
@@ -148,8 +160,8 @@ public class Controller {
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/registrarUsuario")
 	 public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario user) {
-		Rol rol = new Rol("Emprendedor");
-		user.setRol(rol); 
+		Rol rol = new Rol(Long.parseLong("2"),"Emprendedor");
+		user.setRol(rol);
 		usuarioRepository.save(user);
 		return new ResponseEntity<Usuario>(user, HttpStatus.CREATED);
 	 }

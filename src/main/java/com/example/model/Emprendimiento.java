@@ -41,7 +41,7 @@ public class Emprendimiento {
 	@JsonIgnoreProperties(value="emprendimiento")
 	private List<Posteo> posteos;
 	
-	@ManyToMany(cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "emprendimientos")
 	@JsonIgnoreProperties(value="emprendimientos")
 	private List<Categoria> categorias;
 	

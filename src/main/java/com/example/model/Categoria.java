@@ -1,4 +1,8 @@
 package com.example.model;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +16,15 @@ public class Categoria {
 	private String nombre;
 	
 	
+	@ManyToMany()
+	@JsonIgnoreProperties(value="categorias")
+	@JoinTable(
+	  name = "categorias_emprendimientos", 
+	  joinColumns = @JoinColumn(name = "categoria_id"), 
+	  inverseJoinColumns = @JoinColumn(name = "emprendimiento_id"))
+	private List<Emprendimiento> emprendimientos;
+
+
 	public Categoria() {
 		super();
 	}
@@ -36,6 +49,16 @@ public class Categoria {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
+	public List<Emprendimiento> getEmprendimientos() {
+		return emprendimientos;
+	}
+
+
+	public void setEmprendimientos(List<Emprendimiento> emprendimientos) {
+		this.emprendimientos = emprendimientos;
+	}
 	
-	
+
 }
