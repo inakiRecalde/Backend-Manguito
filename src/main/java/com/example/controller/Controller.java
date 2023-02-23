@@ -150,7 +150,10 @@ public class Controller {
 		 currentEmprendimiento.get().setDescripcion(emprendimiento.getDescripcion());
 		 currentEmprendimiento.get().setPrecioPorManguito(emprendimiento.getPrecioPorManguito());
 		 currentEmprendimiento.get().setRedesSociales(emprendimiento.getRedesSociales());
+		 currentEmprendimiento.get().setCategorias(emprendimiento.getCategorias());
+		 
 		 Optional<Usuario> user = usuarioRepository.findById(Long.parseLong(idUsuario));
+		 
 		 user.get().setEmprendimiento(currentEmprendimiento.get());
 		 usuarioRepository.save(user.get());
 		 emprendimientoRepository.save(currentEmprendimiento.get());
