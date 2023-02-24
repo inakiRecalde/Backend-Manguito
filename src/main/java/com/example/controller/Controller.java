@@ -63,6 +63,7 @@ public class Controller {
 		 categorias.add(cat);
 		 cat = new Categoria(Long.valueOf(3), "Moda");
 		 categorias.add(cat);
+		 System.out.println("Se agarro las categorias");
 		 return new ResponseEntity<List<Categoria>>(categorias, HttpStatus.OK);
 	 }
 	
@@ -117,7 +118,8 @@ public class Controller {
 			System.out.println("Entra emprendedor");
 		} 
 		Usuario user = new Usuario(Long.valueOf(2), username, password, rol);
-		 System.out.println("Logeado");
+		user.setEmprendimiento(emp);
+		System.out.println("Logeado");
 		 //return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
 		 return new ResponseEntity<Usuario>(user, HttpStatus.OK);
 	 }
